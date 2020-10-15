@@ -124,7 +124,7 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
      * @param  args the command-line arguments
      */
     public static void main(String[] args) {
-        ResizingArrayStack<String> stack = new ResizingArrayStack<String>();
+        ResizingArrayStack<String> stack = new ResizingArrayStack<>();
         Scanner scanner = new Scanner(System.in);
         while(scanner.hasNext()) {
             String item = scanner.next();
@@ -137,9 +137,9 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
             }
 
             System.out.println("Current stack contains:");
-            Iterator iterator = stack.iterator();
+            Iterator<String> iterator = stack.iterator();
             while (iterator.hasNext()) {
-                String element = (String) iterator.next();
+                String element = iterator.next();
                 System.out.print(element + " ");
             }
             System.out.println("\n");

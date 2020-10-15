@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * The {@code ResizingArrayQueue} class represents a last-in-first-out (LIFO) queue
+ * The {@code ResizingArrayQueue} class represents a first-in-first-out (FIFO) queue
  * of generic items.
  *
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
@@ -120,7 +120,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      * @param  args the command-line arguments
      */
     public static void main(String[] args) {
-        ResizingArrayQueue<String> queue = new ResizingArrayQueue<String>();
+        ResizingArrayQueue<String> queue = new ResizingArrayQueue<>();
         Scanner scanner = new Scanner(System.in);
         while(scanner.hasNext()) {
             String item = scanner.next();
@@ -133,9 +133,9 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
             }
 
             System.out.println("Current queue contains:");
-            Iterator iterator = queue.iterator();
+            Iterator<String> iterator = queue.iterator();
             while (iterator.hasNext()) {
-                String element = (String) iterator.next();
+                String element = iterator.next();
                 System.out.print(element + " ");
             }
             System.out.println("\n");
