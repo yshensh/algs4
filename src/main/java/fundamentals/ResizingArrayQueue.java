@@ -1,13 +1,13 @@
-/******************************************************************************
- *  Compilation:  javac ResizingArrayStack.java
- *  Execution:    java ResizingArrayStack < input.txt
+package fundamentals; /******************************************************************************
+ *  Compilation:  javac ResizingArrayQueue.java
+ *  Execution:    java ResizingArrayQueue < input.txt
  *
- *  Stack implementation with a resizing array.
+ *  Queue implementation with a resizing array.
  *
  *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
  *
- *  % java ResizingArrayStack < alphabet.txt
- *  to be not that or be (2 left on stack)
+ *  % java ResizingArrayQueue < alphabet.txt
+ *  to be not that or be (2 left on queue)
  *
  ******************************************************************************/
 
@@ -16,35 +16,33 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * The {@code ResizingArrayStack} class represents a last-in-first-out (LIFO) stack
+ * The {@code ResizingArrayQueue} class represents a last-in-first-out (LIFO) queue
  * of generic items.
  *
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
  *
- * @param <Item> the generic type of an item in this stack
+ * @param <Item> the generic type of an item in this queue
  */
-public class ResizingArrayStack<Item> implements Iterable<Item> {
+public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     private Item[] a;   // array of items
-    private int n;  // number of elements on stack
+    private int n;  // number of elements on queue
 
-    public ResizingArrayStack() {
+    public ResizingArrayQueue() {
         a = (Item[]) new Object[1];
     }
 
     /**
-     * Check wether the stack is empty
-     *
-     * @return true if this stack is empty; false otherwise
+     * Check wether the queue is empty
+     * @return true if this queue is empty; false otherwise
      */
     public boolean isEmpty() {
         return n == 0;
     }
 
     /**
-     * Returns the number of items in the stack.
-     *
-     * @return the number of items in the stack
+     * Returns the number of items in the queue.
+     * @return the number of items in the queue
      */
     public int size() {
         return n;
@@ -52,7 +50,6 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
 
     /**
      * Resize the underlying array holding the elements
-     *
      * @param capacity
      */
     private void resize(int capacity) {
@@ -64,9 +61,10 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     }
 
     /**
+     * Adds the item to this queue.
      * @param item
      */
-    public void push(Item item) {
+    public void enqueue(Item item) {
         // double the underlying array when it is full
         if (n == a.length) {
             resize(2*a.length);
@@ -75,13 +73,12 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     }
 
     /**
-     * Removes and returns the item most recently added to this stack.
-     *
+     * Removes and returns the item most recently added to this queue.
      * @return the item most recently added
      */
-    public Item pop() {
+    public Item dequeue() {
         if (isEmpty()) {
-            throw new NoSuchElementException("Stack underflow");
+            throw new NoSuchElementException("Queue underflow");
         }
         Item item = a[--n];
         a[n] = null; // to void loitering
@@ -93,9 +90,8 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     }
 
     /**
-     * Returns an iterator to this stack that iterates through the items in LIFO order.
-     *
-     * @return an iterator to this stack that iterates through the items in LIFO order.
+     * Returns an iterator to this queue that iterates through the items in FIFO order.
+     * @return an iterator to this queue that iterates through the items in FIFO order.
      */
     public Iterator<Item> iterator() {
         return new ReverseArrayIterator();
@@ -125,25 +121,24 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     }
 
     /**
-     * Unit tests the {@code Stack} data type.
-     *
+     * Unit tests the {@code Queue} data type.
      * @param  args the command-line arguments
      */
     public static void main(String[] args) {
-        ResizingArrayStack<String> stack = new ResizingArrayStack<String>();
+        ResizingArrayQueue<String> queue = new ResizingArrayQueue<String>();
         Scanner scanner = new Scanner(System.in);
         while(scanner.hasNext()) {
             String item = scanner.next();
             System.out.println("Reading input [" + item + "]");
             if(!item.equals("-")) {
                 System.out.println("> push item: " + item);
-                stack.push(item);
+                queue.enqueue(item);
             } else {
-                System.out.println("> pop item: " + stack.pop());
+                System.out.println("> pop item: " + queue.dequeue());
             }
 
-            System.out.println("Current stack contains:");
-            Iterator iterator = stack.iterator();
+            System.out.println("Current queue contains:");
+            Iterator iterator = queue.iterator();
             while (iterator.hasNext()) {
                 String element = (String) iterator.next();
                 System.out.print(element + " ");

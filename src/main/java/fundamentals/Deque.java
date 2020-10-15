@@ -1,3 +1,5 @@
+package fundamentals;
+
 /**
  * The {@code Deque} class represents a double-ended queue (which is like a stack or a queue but supports adding and removing items at both ends) of generic items.
  *
