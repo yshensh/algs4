@@ -6,8 +6,7 @@ package fundamentals; /*********************************************************
  *
  *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
  *
- *  % java ResizingArrayQueue < alphabet.txt
- *  to be not that or be (2 left on queue)
+ *  % java -cp ../  fundamentals.ResizingArrayQueue < alphabet.txt
  *
  ******************************************************************************/
 
@@ -113,10 +112,6 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
                 throw new NoSuchElementException();
             }
             return a[i--];
-        }
-
-        public void remove() {
-            throw new UnsupportedOperationException();
         }
     }
 

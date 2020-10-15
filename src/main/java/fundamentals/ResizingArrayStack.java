@@ -6,8 +6,7 @@ package fundamentals; /*********************************************************
  *
  *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
  *
- *  % java ResizingArrayStack < alphabet.txt
- *  to be not that or be (2 left on stack)
+ *  % java -cp ../  fundamentals.ResizingArrayStack < alphabet.txt
  *
  ******************************************************************************/
 
