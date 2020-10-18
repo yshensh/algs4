@@ -5,7 +5,7 @@ package fundamentals; /*********************************************************
  *  Stack implementation with a resizing array.
  *
  *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
- *
+ *  % javac ResizingArrayStack.java
  *  % java -cp ../  fundamentals.ResizingArrayStack < alphabet.txt
  *
  ******************************************************************************/

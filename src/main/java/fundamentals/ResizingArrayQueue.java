@@ -1,11 +1,13 @@
-package fundamentals; /******************************************************************************
+package fundamentals;
+
+/******************************************************************************
  *  Compilation:  javac ResizingArrayQueue.java
  *  Execution:    java ResizingArrayQueue < input.txt
  *
  *  Queue implementation with a resizing array.
  *
- *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
- *
+ *  % echo "a b c d e - f - - g - - - h"  >  alphabet.txt
+ *  % javac ResizingArrayQueue.java
  *  % java -cp ../  fundamentals.ResizingArrayQueue < alphabet.txt
  *
  ******************************************************************************/
@@ -15,8 +17,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * The {@code ResizingArrayQueue} class represents a first-in-first-out (FIFO) queue
- * of generic items.
+ * The {@code ResizingArrayQueue} class represents a first-in-first-out (FIFO) queue of generic items.
  *
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
  *
@@ -24,11 +25,16 @@ import java.util.NoSuchElementException;
  */
 public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
-    private Item[] a;   // array of items
-    private int n;  // number of elements on queue
+    private Item[] q;   // array of items
+    private int n;      // number of elements on queue
+    private int first;  // index of first element of queue
+    private int last;   // index of next available slot
 
     public ResizingArrayQueue() {
-        a = (Item[]) new Object[1];
+        q = (Item[]) new Object[1];
+        n = 0;
+        first = 0;
+        last = 0;
     }
 
     /**
@@ -54,9 +60,12 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
     private void resize(int capacity) {
         Item[] copy = (Item[]) new Object[capacity];
         for (int i = 0; i < n; i++) {
-            copy[i] = a[i];
+            // copy elements to resized wrap (including element in wrapped around index)
+            copy[i] = q[(first + i) % q.length];
         }
-        a = copy;
+        q = copy;
+        first = 0;
+        last = n;
     }
 
     /**
@@ -65,10 +74,15 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      */
     public void enqueue(Item item) {
         // double the underlying array when it is full
-        if (n == a.length) {
-            resize(2*a.length);
+        if (n == q.length) {
+            resize(2*q.length);
         }
-        a[n++] = item;
+        q[last++] = item;
+        // wrap around to utilize existing array before resize
+        if(last == q.length) {
+            last = 0;
+        }
+        n++;
     }
 
     /**
@@ -79,11 +93,17 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
         if (isEmpty()) {
             throw new NoSuchElementException("Queue underflow");
         }
-        Item item = a[--n];
-        a[n] = null; // to void loitering
+        Item item = q[first];
+        q[first] = null;    // avoid loitering
+        n--;
+        first++;
+        // wrap around to utilize existing array before resize
+        if(first == q.length) {
+            first = 0;
+        }
         // halves the underlying array when it is one-quarter full
-        if (n > 0 && n == a.length/4) {
-            resize(a.length/2);
+        if (n > 0 && n == q.length/4) {
+            resize(q.length/2);
         }
         return item;
     }
@@ -93,25 +113,27 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      * @return an iterator to this queue that iterates through the items in FIFO order.
      */
     public Iterator<Item> iterator() {
-        return new ReverseArrayIterator();
+        return new ArrayIterator();
     }
 
-    private class ReverseArrayIterator implements Iterator<Item> {
+    private class ArrayIterator implements Iterator<Item> {
         private int i;
 
-        public ReverseArrayIterator() {
-            i = n-1;
+        public ArrayIterator() {
+            i = 0;
         }
 
         public boolean hasNext() {
-            return i >= 0;
+            return i < n;
         }
 
         public Item next() {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return a[i--];
+            Item item = q[(first + i) % q.length];
+            i++;
+            return item;
         }
     }
 
@@ -126,10 +148,10 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
             String item = scanner.next();
             System.out.println("Reading input [" + item + "]");
             if(!item.equals("-")) {
-                System.out.println("> push item: " + item);
+                System.out.println("> enqueue item: " + item);
                 queue.enqueue(item);
             } else {
-                System.out.println("> pop item: " + queue.dequeue());
+                System.out.println("> dequeue item: " + queue.dequeue());
             }
 
             System.out.println("Current queue contains:");

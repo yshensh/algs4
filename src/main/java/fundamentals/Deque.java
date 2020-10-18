@@ -1,5 +1,7 @@
 package fundamentals;
 
+import java.util.Iterator;
+
 /**
  * The {@code Deque} class represents a double-ended queue (which is like a stack or a queue but supports adding and removing items at both ends) of generic items.
  *
@@ -66,5 +68,10 @@ public class Deque<Item> implements Iterable <Item> {
      */
     public Item popRight() {
 
+    }
+
+    @Override
+    public Iterator<Item> iterator() {
+        return null;
     }
 }
