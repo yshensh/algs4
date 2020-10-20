@@ -6,11 +6,16 @@ package fundamentals;
  *
  *  Stack implementation with a resizing array.
  *
+ *  Under project root directory
  *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
- *  % javac ResizingArrayStack.java
- *  % java -cp ../  fundamentals.ResizingArrayStack < alphabet.txt
+ *  %
+ *  % javac-algs4 ./src/main/java/fundamentals/ResizingArrayStack.java
+ *  %
+ *  % java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayStack < alphabet.txt
  *
  ******************************************************************************/
+
+import edu.princeton.cs.algs4.StdIn;
 
 import java.util.Scanner;
 import java.util.Iterator;
@@ -128,8 +133,8 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     public static void main(String[] args) {
         ResizingArrayStack<String> stack = new ResizingArrayStack<>();
         Scanner scanner = new Scanner(System.in);
-        while(scanner.hasNext()) {
-            String item = scanner.next();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
             System.out.println("Reading input [" + item + "]");
             if(!item.equals("-")) {
                 System.out.println("> push item: " + item);

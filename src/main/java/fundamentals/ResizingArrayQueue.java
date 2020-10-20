@@ -1,18 +1,19 @@
-package fundamentals;
-
-/******************************************************************************
+package fundamentals; /******************************************************************************
  *  Compilation:  javac ResizingArrayQueue.java
  *  Execution:    java ResizingArrayQueue < input.txt
  *
  *  Queue implementation with a resizing array.
  *
+ *  Under project root directory
  *  % echo "a b c d e - f - - g - - - h"  >  alphabet.txt
- *  % javac ResizingArrayQueue.java
- *  % java -cp ../  fundamentals.ResizingArrayQueue < alphabet.txt
+ *  %
+ *  % javac-algs4 ./src/main/java/fundamentals/ResizingArrayQueue.java
+ *  %
+ *  % java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayQueue < alphabet.txt
  *
  ******************************************************************************/
 
-import java.util.Scanner;
+import edu.princeton.cs.algs4.StdIn;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -143,9 +144,8 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
      */
     public static void main(String[] args) {
         ResizingArrayQueue<String> queue = new ResizingArrayQueue<>();
-        Scanner scanner = new Scanner(System.in);
-        while(scanner.hasNext()) {
-            String item = scanner.next();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
             System.out.println("Reading input [" + item + "]");
             if(!item.equals("-")) {
                 System.out.println("> enqueue item: " + item);
