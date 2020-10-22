@@ -1,20 +1,5 @@
 package fundamentals;
 
-/******************************************************************************
- *  Compilation:  javac ResizingArrayStack.java
- *  Execution:    java ResizingArrayStack < input.txt
- *
- *  Stack implementation with a resizing array.
- *
- *  Under project root directory
- *  % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
- *  %
- *  % javac-algs4 ./src/main/java/fundamentals/ResizingArrayStack.java
- *  %
- *  % java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayStack < alphabet.txt
- *
- ******************************************************************************/
-
 import edu.princeton.cs.algs4.StdIn;
 
 import java.util.Scanner;
@@ -26,6 +11,12 @@ import java.util.NoSuchElementException;
  * of generic items.
  *
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
+ *
+ * (under the root directory)
+ * Compilation:  javac-algs4 ./src/main/java/fundamentals/ResizingArrayStack.java
+ * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayStack < input.txt
+ * Sample input:
+ * % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
  *
  * @param <Item> the generic type of an item in this stack
  */

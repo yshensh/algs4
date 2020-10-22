@@ -1,17 +1,4 @@
-package fundamentals; /******************************************************************************
- *  Compilation:  javac ResizingArrayQueue.java
- *  Execution:    java ResizingArrayQueue < input.txt
- *
- *  Queue implementation with a resizing array.
- *
- *  Under project root directory
- *  % echo "a b c d e - f - - g - - - h"  >  alphabet.txt
- *  %
- *  % javac-algs4 ./src/main/java/fundamentals/ResizingArrayQueue.java
- *  %
- *  % java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayQueue < alphabet.txt
- *
- ******************************************************************************/
+package fundamentals;
 
 import edu.princeton.cs.algs4.StdIn;
 import java.util.Iterator;
@@ -21,6 +8,12 @@ import java.util.NoSuchElementException;
  * The {@code ResizingArrayQueue} class represents a first-in-first-out (FIFO) queue of generic items.
  *
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
+ *
+ * (under the root directory)
+ * Compilation:  javac-algs4 ./src/main/java/fundamentals/ResizingArrayQueue.java
+ * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayQueue < input.txt
+ * Sample input:
+ * % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
  *
  * @param <Item> the generic type of an item in this queue
  */

@@ -1,10 +1,20 @@
 package fundamentals;
 
-import java.io.BufferedInputStream;
-import java.util.Scanner;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
+import java.util.Arrays;
 
 /**
  * The {@code BinarySearch} class provides a static method for binary search for an integer in a sorted array of integers.
+ *
+ * (under the root directory)
+ * Compilation:  javac-algs4 ./src/main/java/fundamentals/BinarySearch.java
+ * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.BinarySearch < input.txt
+ * Sample input files:
+ * - tinyAllowlist.txt
+ * - tinyText.txt
+ *
  */
 public class BinarySearch {
     /**
@@ -25,7 +35,18 @@ public class BinarySearch {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(new BufferedInputStream(System.in), "UTF-8");;
+        // read the integers from a file
+        In in = new In(args[0]);
+        int[] allowlist = in.readAllInts();
 
+        // sort the array
+        Arrays.sort(allowlist);
+
+        // read integer key from standard input; print if not in allowlist
+        while (!StdIn.isEmpty()) {
+            int key = StdIn.readInt();
+            if (BinarySearch.indexOf(allowlist, key) == -1)
+                StdOut.println(key);
+        }
     }
 }
