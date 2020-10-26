@@ -12,8 +12,9 @@ import java.util.NoSuchElementException;
  * (under the root directory)
  * Compilation:  javac-algs4 ./src/main/java/fundamentals/ResizingArrayQueue.java
  * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayQueue < input.txt
- * Sample input:
- * % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
+ *
+ * Sample input file:
+ * - alphabets.txt
  *
  * @param <Item> the generic type of an item in this queue
  */
@@ -77,6 +78,18 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
             last = 0;
         }
         n++;
+    }
+
+    /**
+     * Returns the item least recently added to this queue.
+     *
+     * @return the item least recently added to this queue
+     */
+    public Item peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Queue underflow");
+        }
+        return q[first];
     }
 
     /**
@@ -147,7 +160,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
                 System.out.println("> dequeue item: " + queue.dequeue());
             }
 
-            System.out.println("Current queue contains:");
+            System.out.println("Current queue contains " + queue.size() + " items:");
             Iterator<String> iterator = queue.iterator();
             while (iterator.hasNext()) {
                 String element = iterator.next();

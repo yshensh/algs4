@@ -7,16 +7,16 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * The {@code ResizingArrayStack} class represents a last-in-first-out (LIFO) stack
- * of generic items.
+ * The {@code ResizingArrayStack} class represents a last-in-first-out (LIFO) stack of generic items.
  *
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
  *
  * (under the root directory)
  * Compilation:  javac-algs4 ./src/main/java/fundamentals/ResizingArrayStack.java
  * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayStack < input.txt
- * Sample input:
- * % echo "a b c d d - f - - g - - - h"  >  alphabet.txt
+ *
+ * Sample input file:
+ * - alphabets.txt
  *
  * @param <Item> the generic type of an item in this stack
  */
@@ -70,6 +70,18 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
     }
 
     /**
+     * Returns the item most recently added to this stack.
+     *
+     * @return the item most recently added to this stack
+     */
+    public Item peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Stack underflow");
+        }
+        return a[n-1];
+    }
+
+    /**
      * Removes and returns the item most recently added to this stack.
      * @return the item most recently added
      */
@@ -111,10 +123,6 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
             }
             return a[i--];
         }
-
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
     }
 
     /**
@@ -123,7 +131,6 @@ public class ResizingArrayStack<Item> implements Iterable<Item> {
      */
     public static void main(String[] args) {
         ResizingArrayStack<String> stack = new ResizingArrayStack<>();
-        Scanner scanner = new Scanner(System.in);
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             System.out.println("Reading input [" + item + "]");

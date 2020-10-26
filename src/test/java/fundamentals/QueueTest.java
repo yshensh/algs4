@@ -8,12 +8,12 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResizingArrayQueueTest {
-    private ResizingArrayQueue<String> queue;
+class QueueTest {
+    private Queue<String> queue;
 
     @BeforeEach
     public void init() {
-        queue = new ResizingArrayQueue<>();
+        queue = new Queue<>();
     }
 
     @Test
@@ -45,4 +45,5 @@ class ResizingArrayQueueTest {
             queue.dequeue();
         });
     }
+
 }
