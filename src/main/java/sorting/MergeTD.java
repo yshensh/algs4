@@ -52,7 +52,6 @@ public class MergeTD {
 
                 // condition 4: current key on right greater than or equal to current key on left (take from the left)
             else a[k] = aux[i++];
-
         }
     }
 
