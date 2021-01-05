@@ -3,18 +3,18 @@ package sorting;
 import edu.princeton.cs.algs4.StdRandom;
 
 public class Quick {
-    // invariant: a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
     private static int partition(Comparable[] a, int lo, int hi) {
         int i = lo;
         int j = hi + 1;
+        Comparable v = a[lo];
 
         while(true) {
             // scan item on left to swap
-            while (less(a[++i], a[lo]))
+            while (less(a[++i], v))
                 if (i == hi) break;
 
             // scan item on right to swap
-            while (less(a[lo], a[--j]))
+            while (less(v, a[--j]))
                 if (j == lo) break;
 
             // check if pointers cross
@@ -30,6 +30,7 @@ public class Quick {
         exch(a, lo, j);
 
         // return index of item now known to be in place
+        // now, a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
         return j;
     }
 
