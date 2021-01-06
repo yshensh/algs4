@@ -3,12 +3,13 @@ package sorting;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.Transaction;
+import org.junit.jupiter.api.Test;
 
 import java.util.Stack;
 
 public class PQTest {
-    public static void main(String[] args) {
-
+    @Test
+    public void topM() {
         int m = 3;  // top 3 records
         MinPQ<Transaction> pq = new MinPQ<>(m+1);
 
@@ -22,10 +23,7 @@ public class PQTest {
             if (pq.size() > m) {
                 pq.delMin();
             }
-            StdOut.println(pq.size());
         }
-
-        StdOut.println(pq.size());
 
         // print entries on PQ in reverse order
         Stack<Transaction> stack = new Stack<Transaction>();
