@@ -3,7 +3,7 @@
 ### Overview
 Essential algorithms and data structures that are covered in the textbook Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.
 
-Source code is copied from course materials (textbook, course website, course repo) with annotated comments to help myself learning the content. 
+Source code is extracted from course materials (textbook, course website, course repo) with annotated comments to help myself learning the content. 
 
 Online courses can be found at Coursera:
 - [Algorithms, Part 1](https://www.coursera.org/learn/algorithms-part1)
