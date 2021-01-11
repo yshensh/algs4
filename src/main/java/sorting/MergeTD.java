@@ -41,16 +41,13 @@ public class MergeTD {
         }
         // merge back to a[lo..hi]
         for (int k = lo; k <= hi; k++) {
-            // condition 1: left half exhausted (take from the right)
+            // condition 1: left half exhausted (take from the right) - this copying is unnecessary
             if (i > mid) a[k] = aux[j++];
-
-                // condition 2: right half exhausted (take from the left)
+            // condition 2: right half exhausted (take from the left)
             else if (j > hi) a[k] = aux[i++];
-
-                // condition 3: current key on the right less than current key on left (take from the right)
+            // condition 3: current key on the right less than current key on left (take from the right)
             else if (less(aux[j], aux[i])) a[k] = aux[j++];
-
-                // condition 4: current key on right greater than or equal to current key on left (take from the left)
+            // condition 4: current key on right greater than or equal to current key on left (take from the left)
             else a[k] = aux[i++];
         }
     }
