@@ -150,20 +150,19 @@ public class MaxPQ<Key> implements Iterable<Key> {
         // if the heap order is violated: a node's key > node's parent key
         while (k > 1 && less(k/2, k)) {
             exch(k, k/2);   // exchange the node with its parent
+            k = k/2;          // move to parent node
         }
     }
 
     // top-down heapify (sink)
     private void sink(int k) {
         while (2*k <= n) {
+            // move to child node
             int j = 2*k;    // left child
             if (j < n && less(j, j+1)) j++; // right child (if it is the larger of two children)
-
             if (!less(k, j)) break;
-
             // if the heap order is violated: a node's key < node's children's keys, then exchange the node with the larger of its two children.
             exch(k, j);
-
             // moving down the heap
             k = j;
         }

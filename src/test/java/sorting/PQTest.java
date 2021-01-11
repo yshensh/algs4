@@ -9,6 +9,7 @@ import java.util.Stack;
 
 public class PQTest {
     @Test
+    // a client that reads transactions from file, and prints out the M largest transactions.
     public void topM() {
         int m = 3;  // top 3 records
         MinPQ<Transaction> pq = new MinPQ<>(m+1);
@@ -32,4 +33,17 @@ public class PQTest {
         for (Transaction transaction : stack)
             StdOut.println(transaction);
     }
+
+    @Test
+    // a client that merges together several sorted input streams into one sorted output stream.
+    public void Multiway() {
+        int n = 3;
+        In[] streams = new In[n];
+        for (int i = 0; i < n; i++) {
+            String file = String.format("src/test/resources/m%d.txt", i + 1);
+            streams[i] = new In(file);
+        }
+        Multiway.merge(streams);
+    }
+
 }
