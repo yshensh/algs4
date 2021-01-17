@@ -1,7 +1,6 @@
 package searching;
 
 import java.util.NoSuchElementException;
-import
 import fundamentals.Queue;
 
 /**
