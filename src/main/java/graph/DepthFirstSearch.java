@@ -11,7 +11,7 @@ import fundamentals.Stack;
  * <p>
  * Applications:
  * 1) connected components
- * 2) cycle detction
+ * 2) cycle detection
  * 3) two-colorability
  */
 public class DepthFirstSearch {
