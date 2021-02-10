@@ -15,7 +15,7 @@ public class DepthFirstSearchTest {
         for (int v = 0; v < G.V(); v++) {
             StdOut.print(s + " to " + v + ": ");
             if (search.hasPathTo(v)) {
-                for (int x : search.pathTo(v)){
+                for (int x : search.pathTo(v)) {
                     if (x == s) StdOut.print(x);
                     else StdOut.print("-" + x);
                 }

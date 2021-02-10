@@ -15,7 +15,7 @@ public class BreadthFirstSearchTest {
         for (int v = 0; v < G.V(); v++) {
             StdOut.print(s + " to " + v + " (" + search.distTo(v) + "): ");
             if (search.hasPathTo(v)) {
-                for (int x : search.pathTo(v)){
+                for (int x : search.pathTo(v)) {
                     if (x == s) StdOut.print(x);
                     else StdOut.print("-" + x);
                 }
