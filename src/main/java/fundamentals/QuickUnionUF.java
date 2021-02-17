@@ -3,10 +3,10 @@ package fundamentals;
 import java.util.Arrays;
 
 /**
- *  The {@code UF} class represents a union–find data type
- *  (also known as the disjoint-sets data type).
- *
- *  This implementation uses quick-union
+ * The {@code UF} class represents a union–find data type
+ * (also known as the disjoint-sets data type).
+ * <p>
+ * This implementation uses quick-union
  */
 public class QuickUnionUF {
     private int[] parent;   // parent[i] = parent of i
@@ -21,7 +21,7 @@ public class QuickUnionUF {
     public QuickUnionUF(int n) {
         count = n;
         parent = new int[n];
-        for (int i=0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             parent[i] = i;
         }
     }
@@ -66,7 +66,7 @@ public class QuickUnionUF {
      * @param p one element
      * @param q q the other element
      * @return {@code true} if {@code p} and {@code 1} are in the same set;
-     *         {@code false} otherwise
+     * {@code false} otherwise
      */
     public boolean connected(int p, int q) {
         return find(p) == find(q);

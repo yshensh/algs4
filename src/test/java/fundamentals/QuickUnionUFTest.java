@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class QuickUnionUFTest {
     @Test
-    public void TestQuickUnion(){
+    public void TestQuickUnion() {
         In in = new In("src/test/resources/tinyUF.txt");
         int n = in.readInt();
         QuickUnionUF uf = new QuickUnionUF(n);

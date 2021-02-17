@@ -3,22 +3,22 @@ package fundamentals;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
+
 import java.util.Arrays;
 
 /**
  * The {@code BinarySearch} class provides a static method for binary search for an integer in a sorted array of integers.
- *
+ * <p>
  * (under the root directory)
  * Compilation:  javac-algs4 ./src/main/java/fundamentals/BinarySearch.java
  * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.BinarySearch < input.txt
  * Sample input files:
  * - tinyAllowlist.txt
  * - tinyText.txt
- *
  */
 public class BinarySearch {
     /**
-     * @param a the array of integers. must be sorted in ascending order
+     * @param a   the array of integers. must be sorted in ascending order
      * @param key the search key
      * @return index of key in array {@code a} if present; {@code -1} otherwise
      */

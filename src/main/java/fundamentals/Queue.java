@@ -1,24 +1,14 @@
 package fundamentals;
 
 import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * The {@code Queue} class represents a first-in-first-out (FIFO) queue of generic items.
- *
+ * <p>
  * This implementation uses a singly linked list with a static nested class for linked-list nodes.
- *
- * (under the root directory)
- * Compilation:  javac-algs4 ./src/main/java/fundamentals/Queue.java
- * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.Queue < input.txt
- *
- * Sample input file:
- * - alphabets.txt
- *
- * @param <Item> the generic type of an item in this queue
  */
 public class Queue<Item> implements Iterable<Item> {
     private Node<Item> first;   // beginning of queue
@@ -48,7 +38,8 @@ public class Queue<Item> implements Iterable<Item> {
         return first == null;
     }
 
-    /** Returns the number of items in this queue.
+    /**
+     * Returns the number of items in this queue.
      *
      * @return the number of items in this queue.
      */
@@ -101,7 +92,7 @@ public class Queue<Item> implements Iterable<Item> {
             throw new NoSuchElementException("Queue underflow");
         }
         // save item to return
-        Item item  = first.item;
+        Item item = first.item;
         // delete the first node
         first = first.next;
         n--;
@@ -140,31 +131,4 @@ public class Queue<Item> implements Iterable<Item> {
             return item;
         }
     }
-
-    /**
-     * Unit tests the {@code Queue} data type.
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        Queue<String> queue = new Queue<>();
-        while (!StdIn.isEmpty()) {
-            String item = StdIn.readString();
-            System.out.println("Reading input [" + item + "]");
-            if(!item.equals("-")) {
-                System.out.println("> enqueue item: " + item);
-                queue.enqueue(item);
-            } else {
-                System.out.println("> dequeue item: " + queue.dequeue());
-            }
-            System.out.println("Current queue contains " + queue.size() + " items:");
-            Iterator<String> iterator = queue.iterator();
-            while (iterator.hasNext()) {
-                String element = iterator.next();
-                System.out.print(element + " ");
-            }
-            System.out.println("\n");
-        }
-    }
-
 }
