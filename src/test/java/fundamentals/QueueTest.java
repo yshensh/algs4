@@ -59,13 +59,13 @@ class QueueTest {
             String item = in.readString();
             StdOut.println("Reading input [" + item + "]");
             if (!item.equals("-")) {
-                StdOut.println("> push item: " + item);
+                StdOut.println("> enqueue item: " + item);
                 queue.enqueue(item);
             } else {
-                StdOut.println("> pop item: " + queue.dequeue());
+                StdOut.println("> dequeue item: " + queue.dequeue());
             }
 
-            System.out.println("Current stack contains:");
+            System.out.println("Current queue contains:");
             Iterator<String> iterator = queue.iterator();
             while (iterator.hasNext()) {
                 String element = iterator.next();
