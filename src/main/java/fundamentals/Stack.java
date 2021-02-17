@@ -2,23 +2,13 @@ package fundamentals;
 
 import edu.princeton.cs.algs4.StdIn;
 
-import java.util.Scanner;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * The {@code ResizingArrayStack} class represents a last-in-first-out (LIFO) stack of generic items.
- *
+ * <p>
  * This implementation uses a singly linked list with a static nested class for linked-list nodes.
- *
- * (under the root directory)
- * Compilation:  javac-algs4 ./src/main/java/fundamentals/Stack.java
- * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.Stack < input.txt
- *
- * Sample input file:
- * - alphabets.txt
- *
- * @param <Item> the generic type of an item in this stack
  */
 public class Stack<Item> implements Iterable<Item> {
 
@@ -33,13 +23,14 @@ public class Stack<Item> implements Iterable<Item> {
     /**
      * Initializes an empty stack.
      */
-    public Stack(){
+    public Stack() {
         first = null;
         n = 0;
     }
 
     /**
      * Check wether the stack is empty
+     *
      * @return true if this stack is empty; false otherwise
      */
     public boolean isEmpty() {
@@ -48,6 +39,7 @@ public class Stack<Item> implements Iterable<Item> {
 
     /**
      * Returns the number of items in the stack.
+     *
      * @return the number of items in the stack
      */
     public int size() {
@@ -95,7 +87,7 @@ public class Stack<Item> implements Iterable<Item> {
             throw new NoSuchElementException("Stack underflow");
         }
         // save item to return
-        Item item  = first.item;
+        Item item = first.item;
         // delete the first node
         first = first.next;
         n--;
@@ -104,6 +96,7 @@ public class Stack<Item> implements Iterable<Item> {
 
     /**
      * Returns an iterator to this stack that iterates through the items in LIFO order.
+     *
      * @return an iterator to this stack that iterates through the items in LIFO order.
      */
     public Iterator<Item> iterator() {
@@ -130,31 +123,4 @@ public class Stack<Item> implements Iterable<Item> {
             return item;
         }
     }
-
-    /**
-     * Unit tests the {@code Stack} data type.
-     * @param  args the command-line arguments
-     */
-    public static void main(String[] args) {
-        Stack<String> stack = new Stack<>();
-        while (!StdIn.isEmpty()) {
-            String item = StdIn.readString();
-            System.out.println("Reading input [" + item + "]");
-            if(!item.equals("-")) {
-                System.out.println("> push item: " + item);
-                stack.push(item);
-            } else {
-                System.out.println("> pop item: " + stack.pop());
-            }
-
-            System.out.println("Current stack contains:");
-            Iterator<String> iterator = stack.iterator();
-            while (iterator.hasNext()) {
-                String element = iterator.next();
-                System.out.print(element + " ");
-            }
-            System.out.println("\n");
-        }
-    }
-
 }

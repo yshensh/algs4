@@ -1,14 +1,13 @@
 package fundamentals;
 
 import edu.princeton.cs.algs4.In;
-
 import edu.princeton.cs.algs4.StdOut;
 import org.junit.jupiter.api.Test;
 
 
 class QuickFindUFTest {
     @Test
-    public void TestQuickFind(){
+    public void TestQuickFind() {
         In in = new In("src/test/resources/tinyUF.txt");
         int n = in.readInt();
         QuickFindUF uf = new QuickFindUF(n);

@@ -10,11 +10,11 @@ public class ThreeSumFast {
         int n = a.length;
         int counter = 0;
         Arrays.sort(a);
-        for (int i=0; i < n; i++)
-            for (int j=i; j < n; j++) {
-                int k = Arrays.binarySearch(a, -a[i]-a[j]);
+        for (int i = 0; i < n; i++)
+            for (int j = i; j < n; j++) {
+                int k = Arrays.binarySearch(a, -a[i] - a[j]);
                 if (k > j) counter++;
-        }
+            }
         return counter;
     }
 

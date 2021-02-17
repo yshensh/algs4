@@ -1,18 +1,19 @@
 package fundamentals;
 
 import edu.princeton.cs.algs4.StdIn;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * The {@code ResizingArrayQueue} class represents a first-in-first-out (FIFO) queue of generic items.
- *
+ * <p>
  * This implementation uses a resizing array, which double the underlying array when it is full and halves the underlying array when it is one-quarter full.
- *
+ * <p>
  * (under the root directory)
  * Compilation:  javac-algs4 ./src/main/java/fundamentals/ResizingArrayQueue.java
  * Execution:    java-algs4 -cp /usr/local/lift/lib/algs4.jar:./src/main/java/ fundamentals.ResizingArrayQueue < input.txt
- *
+ * <p>
  * Sample input file:
  * - alphabets.txt
  *
@@ -34,6 +35,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Check wether the queue is empty
+     *
      * @return true if this queue is empty; false otherwise
      */
     public boolean isEmpty() {
@@ -42,6 +44,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Returns the number of items in the queue.
+     *
      * @return the number of items in the queue
      */
     public int size() {
@@ -50,6 +53,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Resize the underlying array holding the elements
+     *
      * @param capacity
      */
     private void resize(int capacity) {
@@ -65,16 +69,17 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Adds the item to this queue.
+     *
      * @param item
      */
     public void enqueue(Item item) {
         // double the underlying array when it is full
         if (n == q.length) {
-            resize(2*q.length);
+            resize(2 * q.length);
         }
         q[last++] = item;
         // wrap around to utilize existing array before resize
-        if(last == q.length) {
+        if (last == q.length) {
             last = 0;
         }
         n++;
@@ -94,6 +99,7 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Removes and returns the item most recently added to this queue.
+     *
      * @return the item most recently added
      */
     public Item dequeue() {
@@ -105,18 +111,19 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
         n--;
         first++;
         // wrap around to utilize existing array before resize
-        if(first == q.length) {
+        if (first == q.length) {
             first = 0;
         }
         // halves the underlying array when it is one-quarter full
-        if (n > 0 && n == q.length/4) {
-            resize(q.length/2);
+        if (n > 0 && n == q.length / 4) {
+            resize(q.length / 2);
         }
         return item;
     }
 
     /**
      * Returns an iterator to this queue that iterates through the items in FIFO order.
+     *
      * @return an iterator to this queue that iterates through the items in FIFO order.
      */
     public Iterator<Item> iterator() {
@@ -146,14 +153,15 @@ public class ResizingArrayQueue<Item> implements Iterable<Item> {
 
     /**
      * Unit tests the {@code Queue} data type.
-     * @param  args the command-line arguments
+     *
+     * @param args the command-line arguments
      */
     public static void main(String[] args) {
         ResizingArrayQueue<String> queue = new ResizingArrayQueue<>();
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             System.out.println("Reading input [" + item + "]");
-            if(!item.equals("-")) {
+            if (!item.equals("-")) {
                 System.out.println("> enqueue item: " + item);
                 queue.enqueue(item);
             } else {

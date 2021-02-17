@@ -3,7 +3,7 @@ package fundamentals;
 import edu.princeton.cs.algs4.In;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ThreeSumFastTest {
     @Test
