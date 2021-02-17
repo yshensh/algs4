@@ -27,7 +27,6 @@ public class CircularQueue<Item> implements Iterable<Item> {
         this.writer = 0;
     }
 
-
     // Returns true if this ring buffer is empty
     public boolean isEmpty() {
         return n == 0;
@@ -70,7 +69,7 @@ public class CircularQueue<Item> implements Iterable<Item> {
         Item item = buffer[reader];
         // delete the item on the buffer
         buffer[reader] = null;
-        reader = (reader + 1) % capacity;   // increment writer pointer and wrap around if applicable
+        reader = (reader + 1) % capacity;   // increment reader pointer and wrap around if applicable
         n--;
         return item;
     }
