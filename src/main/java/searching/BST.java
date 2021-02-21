@@ -1,7 +1,8 @@
 package searching;
 
-import java.util.NoSuchElementException;
 import fundamentals.Queue;
+
+import java.util.NoSuchElementException;
 
 /**
  * Use Binary Search Tree (BST) to implement ordered symbol-table.
@@ -10,11 +11,11 @@ import fundamentals.Queue;
  * the restriction that the key in any node is larger than the
  * keys in all nodes in that node's left subtree and smaller than
  * the keys in all nodes in that node's right subtree.
- *
+ * <p>
  * Basic methods:
  * - get
  * - put
- *
+ * <p>
  * Order-based methods and deletion:
  * - minimum / maximum
  * - floor / ceiling
@@ -23,18 +24,18 @@ import fundamentals.Queue;
  * - delete the minimum and maximum
  * - delete
  * - range search
- *
+ * <p>
  * search
  * - worst cost: n
  * - avg cost: log(n)
- *
+ * <p>
  * insert
  * - worst cost: n
  * - avg cost: log(n)
- *
  */
 public class BST<Key extends Comparable<Key>, Value> {
     private Node root;              // root of BST
+
     private class Node {
         private Key key;            // sorted by key
         private Value val;          // associated data
@@ -57,6 +58,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     /**
      * Returns the number of key-value pairs in this symbol table.
+     *
      * @return the number of key-value pairs in this symbol table.
      */
     public int size() {
@@ -74,7 +76,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      *
      * @param key the key
      * @return the value associated with the given key if the key is in the symbol table
-     *         and {@code null} if the key is not in the symbol table
+     * and {@code null} if the key is not in the symbol table
      */
     public Value get(Key key) {
         return get(root, key);
@@ -104,9 +106,9 @@ public class BST<Key extends Comparable<Key>, Value> {
     private Node put(Node x, Key key, Value val) {
         if (x == null) return new Node(key, val, 1);
         int cmp = key.compareTo(x.key);
-        if      (cmp < 0) x.left  = put(x.left,  key, val);
+        if (cmp < 0) x.left = put(x.left, key, val);
         else if (cmp > 0) x.right = put(x.right, key, val);
-        else              x.val   = val;
+        else x.val = val;
         x.size = 1 + size(x.left) + size(x.right);
         return x;
     }
@@ -115,7 +117,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      * Removes the specified key and its associated value from this symbol table
      * (if the key is in this symbol table).
      *
-     * @param  key the key
+     * @param key the key
      * @throws IllegalArgumentException if {@code key} is {@code null}
      */
     public void delete(Key key) {
@@ -127,11 +129,11 @@ public class BST<Key extends Comparable<Key>, Value> {
         if (x == null) return null;
 
         int cmp = key.compareTo(x.key);
-        if      (cmp < 0) x.left  = delete(x.left,  key);
+        if (cmp < 0) x.left = delete(x.left, key);
         else if (cmp > 0) x.right = delete(x.right, key);
         else {
             if (x.right == null) return x.left;
-            if (x.left  == null) return x.right;
+            if (x.left == null) return x.right;
             // save a link to the node to be deleted in t
             Node t = x;
             // set x to point to its successor min(t.right)
@@ -179,7 +181,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     private Node min(Node x) {
         if (x.left == null) return x;
-        else                return min(x.left);
+        else return min(x.left);
     }
 
 
@@ -196,14 +198,14 @@ public class BST<Key extends Comparable<Key>, Value> {
 
     private Node max(Node x) {
         if (x.right == null) return x;
-        else                 return max(x.right);
+        else return max(x.right);
     }
 
     /**
      * Returns the largest key in the symbol table less than or equal to {@code key}.
      * largest key <= given key
      *
-     * @param  key the key
+     * @param key the key
      * @return the largest key in the symbol table less than or equal to {@code key}
      */
     public Key floor(Key key) {
@@ -226,7 +228,7 @@ public class BST<Key extends Comparable<Key>, Value> {
         Node t = floor(x.right, key);
         // - if there is any key <= k in the right subtree
         if (t != null) return t;
-        // - otherwise, it is the key in the root
+            // - otherwise, it is the key in the root
         else return x;
     }
 
@@ -234,7 +236,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      * Returns the smallest key in the symbol table greater than or equal to {@code key}.
      * smallest key >= a given key.
      *
-     * @param  key the key
+     * @param key the key
      * @return the smallest key in the symbol table greater than or equal to {@code key}
      */
     public Key ceiling(Key key) {
@@ -255,7 +257,7 @@ public class BST<Key extends Comparable<Key>, Value> {
             Node t = ceiling(x.left, key);
             // - if there is any key >= k in the left subtree
             if (t != null) return t;
-            // - otherwise, it is the key in the root
+                // - otherwise, it is the key in the root
             else return x;
         }
 
@@ -283,10 +285,10 @@ public class BST<Key extends Comparable<Key>, Value> {
         // if the number of keys t in the left subtree is larger than k,
         // look (recursively) for the key of rank in the left subtree
         if (t > k) return select(x.left, k);
-        // if t is smaller than k,
-        // look (recursively) for the key of rank k-t-1 in the right subtree
-        // (substract the current node, and all of the nodes on its left subtree)
-        else if (t < k) return select(x.right, k-t-1);
+            // if t is smaller than k,
+            // look (recursively) for the key of rank k-t-1 in the right subtree
+            // (substract the current node, and all of the nodes on its left subtree)
+        else if (t < k) return select(x.right, k - t - 1);
         else return x;
     }
 
@@ -308,12 +310,12 @@ public class BST<Key extends Comparable<Key>, Value> {
         // if the given key is less than the key at the root,
         // we return the rank of the key in the left subtree (recursively computed)
         if (cmp < 0) return rank(key, x.left);
-        // if the given key is larger than the key at the root,
-        // we return t plus one (to count the key at the root) plus the rank of the key in
-        // the right subtree (recursively computed)
+            // if the given key is larger than the key at the root,
+            // we return t plus one (to count the key at the root) plus the rank of the key in
+            // the right subtree (recursively computed)
         else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
-        // if the given key is equal to the key at the root,
-        // we return the number of keys t in the left subtree
+            // if the given key is equal to the key at the root,
+            // we return the number of keys t in the left subtree
         else return size(x.left);
     }
 
