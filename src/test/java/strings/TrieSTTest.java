@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class TrieSTTest {
     @Test
-    public void testSort() {
+    public void testTrieST() {
         In in = new In("src/test/resources/shellsST.txt");
         // build symbol table from standard input
         TrieST<Integer> st = new TrieST<Integer>();
