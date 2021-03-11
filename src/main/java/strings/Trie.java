@@ -40,7 +40,8 @@ public class Trie {
             return x;
         }
         char c = key.charAt(d);
-        x.value = false;
+        // set to false if it is null
+        x.value = x.value != null && x.value;
         x.next[c] = put(x.next[c], key, d + 1);
         return x;
     }
